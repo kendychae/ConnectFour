@@ -1,3 +1,8 @@
+@* 
+    Board Component
+    Renders the Connect Four game board as a 6x7 grid.
+    Handles click events for piece placement and displays winning pieces with special styling.
+*@
 @rendermode InteractiveServer
 
 <div class="board">
@@ -18,17 +23,32 @@
 </div>
 
 @code {
+    /// <summary>
+    /// The current game state to render
+    /// </summary>
     [Parameter]
     public required GameState CurrentGameState { get; set; }
     
+    /// <summary>
+    /// Event callback when a piece is played in a column
+    /// </summary>
     [Parameter]
     public EventCallback<int> OnPiecePlayed { get; set; }
     
+    /// <summary>
+    /// Handles a column click by invoking the parent callback
+    /// </summary>
     private async Task PlayPiece(int column)
     {
         await OnPiecePlayed.InvokeAsync(column);
     }
     
+    /// <summary>
+    /// Gets the CSS classes for a game piece based on its state
+    /// </summary>
+    /// <param name="piece">The type of piece (Empty, Red, Yellow)</param>
+    /// <param name="isWinning">Whether this piece is part of a winning sequence</param>
+    /// <returns>Space-separated CSS class names</returns>
     private string GetPieceClass(GamePiece piece, bool isWinning)
     {
         var baseClass = "piece";

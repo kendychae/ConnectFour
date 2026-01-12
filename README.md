@@ -1,89 +1,165 @@
-﻿# Connect Four - Blazor Web Application
+﻿# 🎮 Connect Four - Blazor Web Application
 
-A fully functional Connect Four game built with Blazor Server as part of CSE 325 Week 4 Assignment.
+[![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![Blazor](https://img.shields.io/badge/Blazor-Server-512BD4?logo=blazor)](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
+[![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=csharp)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-## Features
+A modern, fully-featured Connect Four game built with **Blazor Server** and **.NET 8**, showcasing interactive web development, state management, and responsive design principles.
 
-### Core Game Functionality
-- **Classic Connect Four Gameplay**: Drop colored pieces into a 7-column, 6-row grid
-- **Win Detection**: Automatically detects horizontal, vertical, and diagonal wins
-- **Interactive UI**: Click on any column to drop your piece
-- **Visual Feedback**: Winning pieces are highlighted with special animations
-- **Turn Management**: Automatic player switching between Red and Yellow
+## 🚀 Live Demo
 
-### Additional Features (Assignment Requirement)
-1. **Win Tracker**: Keeps track of consecutive wins for each player across multiple games
-   - Displays current win count for Red and Yellow players
-   - Persists throughout gaming session
-   - Can be reset with "Reset Win Stats" button
+> **Note:** This application runs locally. Follow the [How to Run](#-how-to-run) section to get started.
 
-2. **Move History**: Complete log of all moves made during the current game
-   - Shows which player played in which column
-   - Numbered list for easy reference
-   - Scrollable history for longer games
+## ✨ Features
 
-### UI/UX Enhancements
-- **Responsive Design**: Works on desktop and mobile devices
-- **Smooth Animations**: Pieces drop with realistic animation
-- **Color-Coded Players**: Clear visual distinction between Red and Yellow
-- **Winner Celebration**: Animated announcement when a player wins
-- **Clean Controls**: Easy-to-use "New Game" and "Reset Win Stats" buttons
+### 🎯 Core Gameplay
+- **Classic Connect Four Mechanics**: Traditional 7×6 grid gameplay
+- **Intelligent Win Detection**: Automatically identifies horizontal, vertical, and diagonal four-in-a-row patterns
+- **Draw Detection**: Recognizes when the board is full with no winner
+- **Real-time Turn Management**: Seamless player switching between Red and Yellow
+- **Column Full Indicators**: Visual feedback for columns that are at capacity
 
-## Technology Stack
+### 📊 Game Statistics
+- **Persistent Win Tracking**: Maintains win counts across multiple games
+- **Move History Log**: Complete audit trail of all moves with player and column information
+- **Session Statistics**: Track competitive performance during gameplay sessions
 
-- **.NET 8.0**: Latest .NET framework
-- **Blazor Server**: Interactive server-side Blazor
-- **C#**: Game logic and component code
-- **CSS**: Custom styling with animations
-- **Razor Components**: Modular component architecture
+### 🎨 User Experience
+- **Smooth Animations**: Realistic piece drop physics and winning celebration effects
+- **Responsive Design**: Fully functional on desktop, tablet, and mobile devices
+- **Visual Feedback**: Clear indicators for current player, winning pieces, and game state
+- **Intuitive Controls**: One-click column selection and easy game reset options
+- **Accessibility**: Keyboard navigation support and clear visual hierarchy
 
-## Project Structure
+## 🛠️ Technology Stack
 
+| Technology | Purpose |
+|------------|---------|
+| **.NET 8.0** | Latest framework with performance improvements |
+| **Blazor Server** | Real-time, interactive UI with server-side rendering |
+| **C# 12** | Modern language features and game logic |
+| **Razor Components** | Modular, reusable UI components |
+| **CSS3** | Custom animations and responsive layouts |
+| **ASP.NET Core** | Web server and application hosting |
+
+## 📁 Project Structure
+
+```
 ConnectFour/
- Components/
-    Board.razor          # Game board component
-    Pages/
-       Game.razor       # Main game page (/connectfour)
-       Game.razor.css   # Game styling
-    Layout/
-        NavMenu.razor    # Navigation menu
- GameState.cs             # Core game logic and state management
- Program.cs               # Application entry point
+├── Components/
+│   ├── Board.razor              # Game board component with grid layout
+│   ├── App.razor                # Root application component
+│   ├── Pages/
+│   │   ├── Game.razor          # Main game page (/connectfour)
+│   │   ├── Game.razor.css      # Game-specific styling
+│   │   ├── Home.razor          # Landing page
+│   │   └── ...                 # Additional pages
+│   └── Layout/
+│       ├── MainLayout.razor    # Primary layout wrapper
+│       └── NavMenu.razor       # Navigation component
+├── GameState.cs                 # Core game logic and state management
+├── Program.cs                   # Application entry point and configuration
+├── ConnectFour.csproj          # Project file with dependencies
+└── wwwroot/                     # Static assets (CSS, images)
+```
 
-## How to Run
+## 🚀 How to Run
 
-1. Ensure you have .NET 8.0 SDK installed
-2. Navigate to the project directory
-3. Run the application:
+### Prerequisites
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/kendychae/ConnectFour.git
+   cd ConnectFour
+   ```
+
+2. **Restore dependencies**
+   ```bash
+   dotnet restore
+   ```
+
+3. **Run the application**
+   ```bash
    dotnet run
-4. Open your browser and navigate to the URL shown in the terminal (typically http://localhost:5299)
-5. Click "Connect Four" in the navigation menu to start playing
+   ```
 
-## How to Play
+4. **Open in browser**
+   - Navigate to `https://localhost:5001` or the URL shown in terminal
+   - Click **"Connect Four"** in the navigation menu
 
-1. The game starts with the Red player
-2. Click on any column to drop your piece
-3. Pieces fall to the lowest available position in that column
-4. Players alternate turns
-5. First player to connect four pieces horizontally, vertically, or diagonally wins!
-6. Click "New Game" to play again (win stats are preserved)
-7. Click "Reset Win Stats" to clear the win counter
+### Build for Production
+```bash
+dotnet publish -c Release -o ./publish
+```
 
-## Learning Objectives Completed
+## 🎮 How to Play
+
+1. **Starting**: Red player goes first
+2. **Making a Move**: Click any column to drop your piece
+3. **Winning**: Connect four pieces horizontally, vertically, or diagonally
+4. **New Game**: Click "New Game" to play again (statistics persist)
+5. **Reset Stats**: Clear all win counts with "Reset Win Stats"
+
+### Game Rules
+- Players alternate turns (Red → Yellow → Red → ...)
+- Pieces fall to the lowest available position in the selected column
+- First player to connect four wins immediately
+- If the board fills without a winner, the game ends in a draw
+
+## 🧠 Technical Highlights
+
+### State Management
+- **Centralized game state** using a singleton `GameState` class
+- **Event-driven architecture** with `EventCallback` for component communication
+- **Immutable win tracking** with record types
+
+### Algorithm Implementation
+- **Efficient win detection** using directional scanning (O(1) per move)
+- **Bidirectional search** for all four win conditions
+- **Optimized board representation** with 2D arrays
+
+### UI/UX Design
+- **CSS Grid** for responsive board layout
+- **Keyframe animations** for piece drops and win celebrations
+- **Hover effects** and visual feedback for better interactivity
+- **Mobile-first responsive design** with breakpoints
+
+## 📚 Learning Outcomes
 
 This project demonstrates proficiency in:
-- Blazor component development and lifecycle
-- State management in Blazor applications
-- Event handling and parameter passing between components
-- CSS animations and responsive design
-- C# game logic implementation
-- Interactive render mode in Blazor
+- ✅ Blazor component architecture and lifecycle
+- ✅ Server-side rendering with SignalR
+- ✅ C# object-oriented programming and SOLID principles
+- ✅ State management patterns in modern web applications
+- ✅ Responsive CSS design and animations
+- ✅ Event handling and inter-component communication
+- ✅ Algorithm design and optimization
+- ✅ Git version control and documentation
 
-## Author
+## 🤝 Contributing
 
-Created for BYU-Idaho CSE 325 - .NET Software Development
-Week 4 Assignment: Build Connect Four game with Blazor
+This is a portfolio project, but feedback and suggestions are welcome! Feel free to open an issue or submit a pull request.
 
-## License
+## 📄 License
 
-Educational project for BYU-Idaho coursework.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Kendy Chae**
+- GitHub: [@kendychae](https://github.com/kendychae)
+- Portfolio: [Your Portfolio URL]
+
+## 🙏 Acknowledgments
+
+- Built as part of BYU-Idaho CSE 325 - .NET Software Development
+- Inspired by the classic Connect Four board game
+- Powered by the ASP.NET Core and Blazor communities
+
+---
+
+⭐ **If you found this project interesting, please consider giving it a star!**
