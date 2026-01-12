@@ -1,0 +1,247 @@
+.connect-four-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.connect-four-container h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.game-info {
+    margin-bottom: 2rem;
+}
+
+.win-tracker {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.win-tracker h3 {
+    margin: 0 0 0.5rem 0;
+    color: #495057;
+}
+
+.wins {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.player-wins {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.red-indicator {
+    font-size: 1.5rem;
+}
+
+.yellow-indicator {
+    font-size: 1.5rem;
+}
+
+.current-player {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.player-red {
+    color: #dc3545;
+}
+
+.player-yellow {
+    color: #ffc107;
+}
+
+.winner-announcement {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.board {
+    display: inline-block;
+    background: #0066cc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.board-row {
+    display: flex;
+}
+
+.board-cell {
+    width: 80px;
+    height: 80px;
+    background: #0066cc;
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.board-cell:hover {
+    background: #0055aa;
+}
+
+.piece {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.3s;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);
+}
+
+.piece-red {
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #dc3545);
+    animation: dropIn 0.5s ease-out;
+}
+
+.piece-yellow {
+    background: radial-gradient(circle at 30% 30%, #ffd93d, #ffc107);
+    animation: dropIn 0.5s ease-out;
+}
+
+.piece-winning {
+    animation: winning 1s infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes dropIn {
+    from {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes winning {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.game-controls {
+    margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #28a745;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.move-history {
+    margin-top: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.move-history h3 {
+    margin-top: 0;
+    color: #495057;
+}
+
+.move-history ol {
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-left: 1.5rem;
+}
+
+.move-history li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.move-history li:last-child {
+    border-bottom: none;
+}
+
+.no-moves {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .board-cell {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .piece {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .connect-four-container h1 {
+        font-size: 2rem;
+    }
+    
+    .wins {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

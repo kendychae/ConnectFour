@@ -1,0 +1,86 @@
+@page "/connectfour"
+@rendermode InteractiveServer
+
+<PageTitle>Connect Four</PageTitle>
+
+<div class="connect-four-container">
+    <h1>Connect Four</h1>
+    
+    <div class="game-info">
+        <div class="win-tracker">
+            <h3>Win Tracker</h3>
+            <div class="wins">
+                <div class="player-wins">
+                    <span class="red-indicator"></span> Red: @gameState.Player1Wins
+                </div>
+                <div class="player-wins">
+                    <span class="yellow-indicator"></span> Yellow: @gameState.Player2Wins
+                </div>
+            </div>
+        </div>
+        
+        @if (gameState.WinningPlayer == GamePiece.Empty)
+        {
+            <div class="current-player">
+                Current Player: 
+                <span class="@GetCurrentPlayerClass()">
+                    @gameState.CurrentPlayer
+                </span>
+            </div>
+        }
+        else
+        {
+            <div class="winner-announcement">
+                <h2> @gameState.WinningPlayer Wins! </h2>
+            </div>
+        }
+    </div>
+    
+    <Board CurrentGameState="gameState" OnPiecePlayed="HandlePiecePlayed" />
+    
+    <div class="game-controls">
+        <button class="btn btn-primary" @onclick="ResetGame">New Game</button>
+        <button class="btn btn-secondary" @onclick="ResetStats">Reset Win Stats</button>
+    </div>
+    
+    <div class="move-history">
+        <h3>Move History</h3>
+        @if (gameState.MoveHistory.Count == 0)
+        {
+            <p class="no-moves">No moves yet. Click a column to play!</p>
+        }
+        else
+        {
+            <ol>
+                @foreach (var move in gameState.MoveHistory)
+                {
+                    <li>@move</li>
+                }
+            </ol>
+        }
+    </div>
+</div>
+
+@code {
+    private GameState gameState = new();
+    
+    private void HandlePiecePlayed(int column)
+    {
+        gameState.PlayPiece(column);
+    }
+    
+    private void ResetGame()
+    {
+        gameState.ResetBoard();
+    }
+    
+    private void ResetStats()
+    {
+        gameState = new GameState();
+    }
+    
+    private string GetCurrentPlayerClass()
+    {
+        return gameState.CurrentPlayer == GamePiece.Red ? "player-red" : "player-yellow";
+    }
+}
