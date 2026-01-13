@@ -3,7 +3,6 @@
     Renders the Connect Four game board as a 6x7 grid.
     Handles click events for piece placement and displays winning pieces with special styling.
 *@
-@rendermode InteractiveServer
 
 <div class="board">
     @for (int row = 0; row < GameState.Rows; row++)
@@ -11,10 +10,12 @@
         <div class="board-row">
             @for (int col = 0; col < GameState.Columns; col++)
             {
-                var piece = CurrentGameState.GetPiece(row, col);
-                var isWinningPiece = CurrentGameState.WinningPlay.Contains(row, col);
-                
-                <div class="board-cell" @onclick="() => PlayPiece(col)">
+                int currentRow = row;
+                int currentCol = col;
+                var piece = CurrentGameState.GetPiece(currentRow, currentCol);
+                var isWinningPiece = CurrentGameState.WinningPlay.Contains(currentRow, currentCol);
+
+                <div class="board-cell" @onclick="() => PlayPiece(currentCol)">
                     <div class="@GetPieceClass(piece, isWinningPiece)"></div>
                 </div>
             }
@@ -28,13 +29,13 @@
     /// </summary>
     [Parameter]
     public required GameState CurrentGameState { get; set; }
-    
+
     /// <summary>
     /// Event callback when a piece is played in a column
     /// </summary>
     [Parameter]
     public EventCallback<int> OnPiecePlayed { get; set; }
-    
+
     /// <summary>
     /// Handles a column click by invoking the parent callback
     /// </summary>
@@ -42,7 +43,7 @@
     {
         await OnPiecePlayed.InvokeAsync(column);
     }
-    
+
     /// <summary>
     /// Gets the CSS classes for a game piece based on its state
     /// </summary>
@@ -52,13 +53,13 @@
     private string GetPieceClass(GamePiece piece, bool isWinning)
     {
         var baseClass = "piece";
-        
+
         if (piece == GamePiece.Empty)
             return baseClass;
-        
+
         var colorClass = piece == GamePiece.Red ? "piece-red" : "piece-yellow";
         var winClass = isWinning ? "piece-winning" : "";
-        
+
         return $"{baseClass} {colorClass} {winClass}".Trim();
     }
 }
